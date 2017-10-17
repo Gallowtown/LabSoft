@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{titulo}}</title>
+</head>
+<body>
+	<h1>Egresado</h1>
+	{{InfoCorreo}}
+	<br>
+	{{InfoGracias}}
+	{% if formEg %}
+	<form method="POST" action="">{% csrf_token %}
+	{{formEg.as_p}}
+	<input type="submit" name="Registrame">
+	</form>
+	{% endif %}
+</body>
+</html>
