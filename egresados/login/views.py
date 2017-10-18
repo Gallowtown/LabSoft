@@ -11,7 +11,6 @@ from .models import Egresado
 from random import choice
 
 # Create your views here.
-valores = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<=>@#%&+"
 
 def index(request):
 	return render(request, "index.html", {})
@@ -19,11 +18,11 @@ def index(request):
 def registrarEg(request):
 	egform = EgreForm(request.POST or None)
 	context = {
-
 		"formEg" : egform,
 	}
 
 	if egform.is_valid():
+		valores = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<=>@#%&+"
 		contra = ""
 		form_data = egform.cleaned_data
 		idegresado = form_data.get("idegresado")
@@ -37,21 +36,22 @@ def registrarEg(request):
 		genero = form_data.get("genero")
 		carrera = form_data.get("carrera")
 		grado = form_data.get("grado")
+		estado = 0
 		obj = Egresado.objects.create(idegresado=idegresado, pnombre=pnombre, snombre=snombre, 
 			papellido=papellido, sapellido=sapellido, pais=pais, correo=correo, contra=contra, 
-			genero=genero, carrera=carrera, grado=grado)
+			genero=genero, carrera=carrera, grado=grado, estado=estado)
 
 		send_mail(
 			'Registro Plataforma Egresados UTP',
-    		"Genial! Registro Completado\nBienvenido {} {}\nTu contraseña de ingreso es {}".format(pnombre, papellido, contra),
-    		settings.EMAIL_HOST_USER,
+	   		"Genial! Registro Completado\nBienvenido {} {}\nTu contraseña de ingreso es {}".format(pnombre, papellido, contra),
+	 		settings.EMAIL_HOST_USER,
     		[correo],
     		fail_silently=False,
 		)
 
 		context = {
-			"InfoCorreo" : "Te hemos enviado un correo al {} con tu contraseña de ingreso".format(correo),
-			"InfoGracias" : "Gracias {} {}".format(pnombre, papellido),
+			"InfoCorreo" : "Te enviaremos un correo a {} con tu contraseña de ingreso cuando seas activado".format(correo),
+			"InfoGracias" : "Gracias {} {}, UTP Egresados ☺".format(pnombre, papellido),
 		}
 
 	return render(request, "regEgresado.html", context)
