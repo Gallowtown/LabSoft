@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^registraregresado', views.registrarEg, name='registrarEg'),
     url(r'^registraradmin', views.registrarAdmin, name='registrarAdmin'),
+    url(r'^registrar', views.registrar, name='registrar'),
 ]
 
 if settings.DEBUG:

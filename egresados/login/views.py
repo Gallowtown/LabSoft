@@ -58,3 +58,6 @@ def registrarEg(request):
 
 def registrarAdmin(request):
 	return render(request, "regAdmin.html", {})
+
+def registrar(request):
+	return render(request, "registrar.html", {})
