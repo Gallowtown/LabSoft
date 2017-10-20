@@ -15,7 +15,16 @@
 	{{InfoGracias}}
 	{% if formEg %}
 	<form method="POST" action="">{% csrf_token %}
-	{{formEg.as_p}}
+	<input type="text" name="idegresado" placeholder="Codigo" required="True"><br>
+	<input type="text" name="pnombre"  placeholder="Primer Nombre" required="True">
+	<input type="text" name="snombre"  placeholder="Segundo Nombre" required="False"><br>
+	<input type="text" name="papellido"  placeholder="Primer Apellido" required="True">
+	<input type="text" name="sapellido"  placeholder="Segundo Apellido" required="True"><br>
+	<input type="text" name="pais"  placeholder="Pais" required="True"><br>
+	<input type="text" name="correo"  placeholder="Correo" required="True"><br>
+	<input type="text" name="genero"  placeholder="Genero" required="True"><br>
+	<input type="text" name="carrera"  placeholder="Carrera" required="True"><br>
+	<input type="date" name="grado"  placeholder="Fecha de Graduacion" required="True"><br>
 	<input type="submit" name="Registrame">
 	</form>
 	{% endif %}
